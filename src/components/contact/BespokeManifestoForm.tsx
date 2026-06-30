@@ -91,11 +91,13 @@ export default function BespokeManifestoForm() {
           {/* Phase 1: Identity */}
           <div className="border-t border-white/10 pt-8 grid md:grid-cols-12 gap-8">
             <div className="md:col-span-3">
-              <span className="text-xs tracking-widest font-mono text-gray-500 uppercase">// 01. IDENTITY</span>
+              {/* Updated Section Title: Bigger, bold, and bright gold */}
+              <span className="text-sm tracking-widest font-mono text-[#D4AF37] font-bold uppercase">// 01. IDENTITY</span>
             </div>
             <div className="md:col-span-9 grid sm:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="text-xs tracking-wide text-gray-400 font-light">Your Full Designation</label>
+                {/* Updated Label: Brighter (gray-100) and slightly larger (text-base) */}
+                <label className="text-base tracking-wide text-gray-100 font-bold">Your Full Designation</label>
                 <input
                   type="text"
                   name="name"
@@ -107,7 +109,7 @@ export default function BespokeManifestoForm() {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-xs tracking-wide text-gray-400 font-light">Secure Email Address</label>
+                <label className="text-base tracking-wide text-gray-100 font-bold">Secure Email Address</label>
                 <input
                   type="email"
                   name="email"
@@ -119,7 +121,7 @@ export default function BespokeManifestoForm() {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-xs tracking-wide text-gray-400 font-light">Contact Number</label>
+                <label className="text-base tracking-wide text-gray-100 font-bold">Contact Number</label>
                 <input
                   type="tel"
                   name="phone"
@@ -135,11 +137,11 @@ export default function BespokeManifestoForm() {
           {/* Phase 2: Parameters */}
           <div className="border-t border-white/10 pt-8 grid md:grid-cols-12 gap-8">
             <div className="md:col-span-3">
-              <span className="text-xs tracking-widest font-mono text-gray-500 uppercase">// 02. PARAMETERS</span>
+              <span className="text-sm tracking-widest font-mono text-[#D4AF37] font-bold uppercase">// 02. PARAMETERS</span>
             </div>
             <div className="md:col-span-9 grid sm:grid-cols-3 gap-6">
               <div className="space-y-2">
-                <label className="text-xs tracking-wide text-gray-400 font-light">Target Destination</label>
+                <label className="text-base tracking-wide text-gray-100 font-bold">Target Destination</label>
                 <input
                   type="text"
                   name="destination"
@@ -150,7 +152,7 @@ export default function BespokeManifestoForm() {
                 />
               </div>
               <div className="space-y-2">
-                <label className="text-xs tracking-wide text-gray-400 font-light">Expedition Genre</label>
+                <label className="text-base tracking-wide text-gray-100 font-bold">Expedition Genre</label>
                 <div className="relative">
                   <select
                     name="travelType"
@@ -168,7 +170,7 @@ export default function BespokeManifestoForm() {
                 </div>
               </div>
               <div className="space-y-2">
-                <label className="text-xs tracking-wide text-gray-400 font-light">Departure Date</label>
+                <label className="text-base tracking-wide text-gray-100 font-bold">Departure Date</label>
                 <input
                   type="date"
                   name="date"
@@ -182,12 +184,12 @@ export default function BespokeManifestoForm() {
           </div>
 
           {/* Phase 3: Narrative */}
-          <div className="border-t border-white/10 pt-8 grid md:grid-cols-12 gap-8">
+          {/* <div className="border-t border-white/10 pt-8 grid md:grid-cols-12 gap-8">
             <div className="md:col-span-3">
-              <span className="text-xs tracking-widest font-mono text-gray-500 uppercase">// 03. THE NARRATIVE</span>
+              <span className="text-sm tracking-widest font-mono text-[#D4AF37] font-bold uppercase">// 03. THE NARRATIVE</span>
             </div>
             <div className="md:col-span-9 space-y-2">
-              <label className="text-xs tracking-wide text-gray-400 font-light">Envisioned Experience Details</label>
+              <label className="text-base tracking-wide text-gray-100 font-bold">Envisioned Experience Details</label>
               <textarea
                 name="message"
                 rows={3}
@@ -197,7 +199,7 @@ export default function BespokeManifestoForm() {
                 className="w-full bg-transparent border-b border-white/20 py-3 text-white placeholder-gray-700 outline-none focus:border-[#D4AF37] transition-colors duration-300 font-light text-base resize-none"
               />
             </div>
-          </div>
+          </div> */}
 
           {/* Submit Button */}
           <div className="border-t border-white/10 pt-10 flex justify-end">

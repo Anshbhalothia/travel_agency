@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const WORDS = ["Baku", "Bali", "Dubai", "Maldives", "Malaysia", "Europe","Singapore","Thailand"];
+const WORDS = ["Baku", "Bali", "Dubai", "Maldives", "Malaysia", "Europe", "Singapore", "Thailand"];
 
 function useTypewriter(words: string[], speed = 90, pause = 1800) {
   const [text, setText] = useState("");
@@ -41,7 +41,8 @@ export default function AboutHero() {
         .ab-hero {
           position: relative;
           height: 100vh;
-          min-height: 620px;
+          /* Increased min-height slightly to give content more breathing room */
+          min-height: 680px; 
           display: flex;
           align-items: center;
           overflow: hidden;
@@ -61,7 +62,8 @@ export default function AboutHero() {
         }
         .ab-hero__title {
           font-family: var(--ab-display);
-          font-size: clamp(46px, 7vw, 84px);
+          /* Adjusted clamp slightly to scale down smoother on medium screens */
+          font-size: clamp(40px, 6.5vw, 84px);
           font-weight: 700; line-height: 0.95;
           color: var(--ab-white); letter-spacing: -1.5px;
           margin: 14px 0 18px;
@@ -100,50 +102,53 @@ export default function AboutHero() {
           background: linear-gradient(to bottom, var(--ab-gold), transparent);
           animation: abScrollPulse 2.2s ease-in-out infinite;
         }
-          .ab-hero__video {
-            position: absolute;
-            inset: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-          }
+        .ab-hero__video {
+          position: absolute;
+          inset: 0;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        /* --- NEW: Laptop / Tablet Landscape Breakpoint --- */
+        @media (max-width: 1024px) {
+          .ab-hero__content { padding: 0 40px; }
+          .ab-hero__scroll  { left: 40px; }
+        }
+
+        /* Mobile Breakpoint */
         @media (max-width: 768px) {
           .ab-hero__content { padding: 0 24px; }
-          .ab-hero__scroll  { left: 24px; }
+          .ab-hero__scroll  { left: 24px; bottom: 24px; }
+          .ab-hero__desc { max-width: 100%; }
+        }
+
+        /* --- NEW: Short Screen Height Fix --- */
+        /* Hides the scroll indicator if the browser window is too short, preventing overlap */
+        @media (max-height: 700px) {
+          .ab-hero__scroll { display: none; }
+          .ab-hero { min-height: 500px; }
         }
       `}</style>
 
       <section className="ab-hero">
-        {/* Background image */}
-        {/* <div className="ab-hero__img-wrap">
-          <Image
-            src="/images/about/hero.jpg"
-            alt="Scenic travel destination at golden hour"
-            fill priority
-            className="ab-hero__img"
-            sizes="100vw"
-          />
-          <div className="ab-hero__overlay" />
-        </div> */}
-
         <div className="ab-hero__img-wrap">
-  <video
-    className="ab-hero__video"
-    autoPlay
-    muted
-    loop
-    playsInline
-  >
-    <source src="/videos/about.mp4" type="video/mp4" />
-  </video>
-
-  <div className="ab-hero__overlay" />
-</div>
+          <video
+            className="ab-hero__video"
+            autoPlay
+            muted
+            loop
+            playsInline
+          >
+            <source src="/videos/about.mp4" type="video/mp4" />
+          </video>
+          <div className="ab-hero__overlay" />
+        </div>
 
         {/* Content */}
         <div className="ab-hero__content">
-          <p className="ab-eyebrow">Est. 2009 · Our Story</p>
+          {/* <p className="ab-eyebrow">Est. 2009 · Our Story</p> */}
           <h1 className="ab-hero__title">
             We Don&apos;t Book Trips.
             <em>We Craft Lives.</em>
@@ -161,7 +166,7 @@ export default function AboutHero() {
           </p>
           <div className="ab-hero__btns">
             <Link href="/" className="ab-btn ab-btn--primary">Explore Destinations</Link>
-            <Link href="/contact"      className="ab-btn ab-btn--ghost">Talk to Us</Link>
+            <Link href="/contact" className="ab-btn ab-btn--ghost">Talk to Us</Link>
           </div>
         </div>
 

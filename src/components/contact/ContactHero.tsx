@@ -1,124 +1,132 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 export default function ContactHero() {
   return (
-    <section className="relative h-[75vh] overflow-hidden">
-      {/* Background */}
+    <>
+      <style>{`
+        .ct-hero {
+          position: relative;
+          /* Uses dynamic viewport height, but caps it so it never gets too tall or too short */
+          height: max(60vh, 500px);
+          display: flex;
+          align-items: center;
+          padding-top: 90px; 
+          box-sizing: border-box;
+          overflow: hidden;
+        }
 
-      <motion.div
-        initial={{ scale: 1.15 }}
-        animate={{ scale: 1 }}
-        transition={{
-          duration: 12,
-        }}
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('/images/contact-hero.jpg')",
-        }}
-      />
+        .ct-hero__img-wrap { position: absolute; inset: 0; }
+        
+        .ct-hero__img { 
+          width: 100%; 
+          height: 100%; 
+          object-fit: cover; 
+          object-position: center; 
+          animation: ctZoomOut 12s ease-out forwards;
+        }
 
-      {/* Overlay */}
+        @keyframes ctZoomOut {
+          from { transform: scale(1.15); }
+          to { transform: scale(1); }
+        }
 
-      <div className="absolute inset-0 bg-black/65" />
+        .ct-hero__overlay {
+          position: absolute; inset: 0;
+          background:
+            linear-gradient(to right, rgba(5,8,22,0.92) 0%, rgba(5,8,22,0.6) 45%, rgba(5,8,22,0.15) 100%),
+            linear-gradient(to top, rgba(5,8,22,0.8) 0%, transparent 60%);
+        }
 
-      {/* Gold Glow */}
+        .ct-hero__content {
+          position: relative; 
+          z-index: 2;
+          width: 100%;
+          /* Fluid padding: smoothly scales between 24px on mobile and 64px on desktop */
+          padding: 0 clamp(24px, 5vw, 64px); 
+          /* The max-width now adapts to the screen width, allowing text to wrap naturally */
+          max-width: min(100%, 720px);
+          animation: ctFadeUp 0.9s 0.2s both; 
+        }
 
-      {/* <div
-        className="
-          absolute
-          top-1/2
-          left-1/2
-          -translate-x-1/2
-          -translate-y-1/2
-          w-[500px]
-          h-[500px]
-          rounded-full
-          bg-[#D4AF37]/10
-          blur-[140px]
-        "
-      /> */}
+        @keyframes ctFadeUp {
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
 
-      {/* Content */}
+        .ct-eyebrow {
+          font-family: var(--ab-body, sans-serif);
+          font-size: 12px;
+          text-transform: uppercase;
+          letter-spacing: 6px;
+          color: var(--ab-gold, #D4AF37);
+          margin-bottom: clamp(12px, 2vw, 16px);
+          font-weight: 600;
+        }
 
-      <div className="relative z-10 h-full flex items-center">
-        <div className="max-w-7xl mx-auto px-6 w-full">
-          <motion.p
-            initial={{
-              opacity: 0,
-              y: 20,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            className="
-              uppercase
-              tracking-[6px]
-              text-[#D4AF37]
-            "
-          >
-            Contact Us
-          </motion.p>
+        .ct-hero__title {
+          font-family: var(--ab-display, sans-serif);
+          /* Smoother scaling curve: keeps it readable on mobile without just becoming tiny */
+          font-size: clamp(42px, 5vw + 1rem, 84px);
+          font-weight: 700; 
+          /* Tighter line-height on larger screens, slightly looser on mobile for better wrapping */
+          line-height: clamp(1, 4vw, 1.05);
+          color: var(--ab-white, #ffffff); 
+          letter-spacing: -1.5px;
+          margin: 0 0 clamp(16px, 3vw, 24px);
+        }
 
-          <motion.h1
-            initial={{
-              opacity: 0,
-              y: 40,
-            }}
-            animate={{
-              opacity: 1,
-              y: 0,
-            }}
-            transition={{
-              delay: 0.2,
-            }}
-            className="
-              text-5xl
-              md:text-7xl
-              lg:text-8xl
-              font-semibold
-              mt-6
-              max-w-5xl
-              leading-tight
-            "
-          >
-            Let's Plan Your
-            <br />
-            Next Journey
-          </motion.h1>
+        .ct-hero__title em {
+          display: block; 
+          font-style: italic;
+          color: var(--ab-gold, #D4AF37); 
+          margin-top: 4px; 
+          font-size: 0.85em;
+        }
 
-          <motion.p
-            initial={{
-              opacity: 0,
-            }}
-            animate={{
-              opacity: 1,
-            }}
-            transition={{
-              delay: 0.4,
-            }}
-            className="
-              max-w-2xl
-              text-gray-300
-              mt-8
-              text-lg
-              leading-8
-            "
-          >
-            Whether you're planning a luxury getaway,
-            honeymoon, family vacation or corporate
-            trip, our travel specialists are ready
-            to help create your perfect experience.
-          </motion.p>
+        .ct-hero__desc {
+          /* Keeps the font size highly readable everywhere, never dropping below 15px */
+          font-size: clamp(15px, 1.5vw, 17px);
+          color: rgba(250,250,248,0.7);
+          /* Allows the paragraph to take up more width on tablets/mobile before wrapping */
+          max-width: min(100%, 520px); 
+          line-height: 1.7;
+          font-weight: 300; 
+          margin-bottom: 0; 
+          font-family: var(--ab-body, sans-serif);
+        }
+
+        /* Extreme Short Screen Height Fix */
+        @media (max-height: 600px) {
+          .ct-hero { 
+            align-items: flex-start; 
+            padding-top: 120px; 
+          }
+        }
+      `}</style>
+
+      <section className="ct-hero">
+        {/* Background */}
+        <div className="ct-hero__img-wrap">
+          <img
+            src="/images/contact-hero.jpg"
+            alt="Contact Us"
+            className="ct-hero__img"
+          />
+          <div className="ct-hero__overlay" />
         </div>
-      </div>
 
-      {/* Bottom Curve */}
-
-      <div className="absolute bottom-0 left-0 w-full h-24 bg-[#050816] rounded-t-[100px]" />
-    </section>
+        {/* Content */}
+        <div className="ct-hero__content">
+          <p className="ct-eyebrow">Contact Us</p>
+          <h1 className="ct-hero__title">
+            Let's Plan Your
+            <em>Next Journey</em>
+          </h1>
+          <p className="ct-hero__desc">
+            Whether you're planning a luxury getaway, honeymoon, family vacation or corporate trip, our travel specialists are ready to help create your perfect experience.
+          </p>
+        </div>
+      </section>
+    </>
   );
 }
